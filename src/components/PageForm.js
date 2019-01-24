@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { Form, FormControl, FormGroup, Col, ControlLabel, Button } from 'react-bootstrap';
 
 import './PageForm.css';
+import arrow from '../assets/White_Arrow.svg';
 
 class PageForm extends Component {
   constructor(props) {
@@ -81,7 +82,11 @@ class PageForm extends Component {
 
 
     return (
-      <Form horizontal onSubmit={this.handleSubmit}>
+      <Form
+        horizontal
+        onSubmit={this.handleSubmit}
+        className="formDiv"
+      >
         <FormGroup
         >
           <Col componentClass={ControlLabel}>
@@ -92,6 +97,7 @@ class PageForm extends Component {
             className={firstNameErrorClass}
           >
             <FormControl
+              className="inputField"
               type="text"
               name="firstName"
               onChange={this.handleUserInput}
@@ -106,6 +112,7 @@ class PageForm extends Component {
           </Col>
           <Col className={lastNameErrorClass}>
             <FormControl
+              className="inputField"
               type="text"
               name="lastName"
               onChange={this.handleUserInput}
@@ -120,6 +127,7 @@ class PageForm extends Component {
           </Col>
           <Col className={addressErrorClass}>
             <FormControl
+              className="inputField"
               type="text"
               name="address"
               onChange={this.handleUserInput}
@@ -129,10 +137,11 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col componentClass={ControlLabel}>
-            ADDRESS 2 (OPTIONAL)
+            <label>ADDRESS 2 (OPTIONAL)</label>
           </Col>
           <Col >
             <FormControl
+              className="inputField"
               type="text"
               name="address2"
               onChange={this.handleUserInput}
@@ -145,8 +154,8 @@ class PageForm extends Component {
             <Button
               type="submit"
               disabled={!this.state.formIsValid}
-              className="nextButton"
-            > Next 
+              bsClass="nextButton"
+            > Next <img src={arrow} />
             </Button>
           </Col>
         </FormGroup>
