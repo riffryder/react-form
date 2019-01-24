@@ -75,16 +75,21 @@ class PageForm extends Component {
   }
 
   render() {
+    let firstNameErrorClass = this.errorClass(this.state.firstName);
+    let lastNameErrorClass = this.errorClass(this.state.lastName);
+    let addressErrorClass = this.errorClass(this.state.address);
+
 
     return (
       <Form horizontal onSubmit={this.handleSubmit}>
         <FormGroup
         >
           <Col componentClass={ControlLabel}>
-            FIRST NAME
+            <label>FIRST NAME</label>
+            <div className={`requiredField ${firstNameErrorClass ? 'show' : 'hidden'}`}>REQUIRED</div>
           </Col>
           <Col
-            className={this.errorClass(this.state.firstName)}
+            className={firstNameErrorClass}
           >
             <FormControl
               type="text"
@@ -96,9 +101,10 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col componentClass={ControlLabel}>
-            LAST NAME
+            <label>LAST NAME</label>
+            <div className={`requiredField ${lastNameErrorClass ? 'show' : 'hidden'}`}>REQUIRED</div>
           </Col>
-          <Col className={this.errorClass(this.state.lastName)}>
+          <Col className={lastNameErrorClass}>
             <FormControl
               type="text"
               name="lastName"
@@ -109,9 +115,10 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col componentClass={ControlLabel}>
-            ADDRESS
+            <label>ADDRESS</label>
+            <div className={`requiredField ${addressErrorClass ? 'show' : 'hidden'}`}>REQUIRED</div>
           </Col>
-          <Col className={this.errorClass(this.state.address)}>
+          <Col className={addressErrorClass}>
             <FormControl
               type="text"
               name="address"
@@ -122,7 +129,7 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col componentClass={ControlLabel}>
-            ADDRESS 2
+            ADDRESS 2 (OPTIONAL)
           </Col>
           <Col >
             <FormControl
