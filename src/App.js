@@ -11,14 +11,14 @@ class App extends Component {
     return (
       <Grid className="wrapper">
         <Row>
-          <Col xs={12} md={7} className="header">
-            <img src={logo} alt="logo" className="logo"/>
-            <header>
+          <Col xs={12} md={8} className="welcomeColumn">
+            <header className="welcomeHeader">
+              <img src={logo} alt="logo" className="logo"/>
               <h1>Welcome</h1>
               <p>Please tell us a bit about yourself to get started.</p>
             </header>
           </Col>
-          <Col xs={12} md={5}>
+          <Col xs={12} md={4}>
             <PageForm />
           </Col>
         </Row>
