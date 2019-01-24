@@ -11,19 +11,56 @@ class PageForm extends Component {
       lastName: '',
       address: '',
       address2: '',
+      firstNameValid: false,
+      lastNameValid: false,
+      addressValid: false,
+      formIsValid: false,
+      error: 'REQUIRED'
     }
 
     this.handleUserInput = this.handleUserInput.bind(this);
+    this.validateField = this.validateField.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   handleUserInput(e) {
     const name = e.target.name;
     const value = e.target.value;
 
-    this.setState({
-      [name] : value
-    })
+    this.setState({ [name] : value }, () => this.validateField(name, value));
+  }
 
+  validateField(fieldName, value) {
+    let firstNameValid = this.state.firstNameValid;
+    let lastNameValid = this.state.lastNameValid;
+    let addressValid = this.state.addressValid;
+
+    switch(fieldName) {
+      case 'firstName':
+        firstNameValid = value.length > 1 ? true : false;
+        break;
+      case 'lastName':
+        lastNameValid = value.length > 1 ? true : false;
+        break;
+      case 'address':
+        addressValid = value.length > 1 ? true : false;
+        break;
+      default:
+        break;
+    }
+
+    this.setState({
+      firstNameValid : firstNameValid,
+      lastNameValid: lastNameValid,
+      addressValid: addressValid
+    }, this.validateForm)
+    console.log('STATE', this.state);
+  }
+
+  validateForm() {
+    this.setState({
+      formIsValid: this.state.firstNameValid && this.state.lastNameValid && this.state.addressValid
+    });
   }
 
   render() {
@@ -83,7 +120,7 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col>
-            <Button type="submit">Next</Button>
+            <Button type="submit" disabled={!this.state.formIsValid}>Next</Button>
           </Col>
         </FormGroup>
       </Form>
