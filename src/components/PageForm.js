@@ -27,12 +27,16 @@ class PageForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  //handle user input and immediately validate the field
+
   handleUserInput(e) {
     const name = e.target.name;
     const value = e.target.value;
 
     this.setState({ [name] : value }, () => this.validateField(name, value));
   }
+
+  //validates each required field in form for error handling
 
   validateField(fieldName, value) {
     let firstNameValid = this.state.firstNameValid;
@@ -60,15 +64,21 @@ class PageForm extends Component {
     }, this.validateForm)
   }
 
+  //validates the whole form to handle the disabled submit button
+
   validateForm() {
     this.setState({
       formIsValid: this.state.firstNameValid && this.state.lastNameValid && this.state.addressValid
     });
   }
 
+  //adds has-error class to input field if empty 
+
   errorClass(field) {
     return field.length >= 1 ? '' : 'has-error';
   }
+
+  //handles the submition of the form and alerts all of the info back in a window
 
   handleSubmit(e) {
     alert(`First Name: ${this.state.firstName}\nLast Name: ${this.state.lastName}\nAddress: ${this.state.address}\nAddress2: ${this.state.address2}`);

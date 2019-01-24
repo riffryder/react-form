@@ -1,12 +1,18 @@
+/* container */
+
 .wrapper {
   margin: 0;
   padding: 0;
 }
 
+/* logo */
+
 .logo {
   width: 177px;
   height: 26px;
 }
+
+/* welcome header */
 
 .welcomeColumn {
   background-color: #585858;
@@ -29,6 +35,8 @@ p.welcomeHeader {
   font-family: 'Merriweather', sans-serif;
   font-size: 14px;
 }
+
+/* media queries for mobile */
 
 @media only screen and (min-width:321px) and (max-width:580px) {
   .welcomeColumn {

@@ -1,8 +1,12 @@
+/* container */
+
 .formDiv {
   margin-left: 24px;
   width: 376px;
   margin-top: 90px;
 }
+
+/* user inputs */
 
 label {
   font-family: 'Merriweather-Regular', sans-serif;
@@ -21,6 +25,8 @@ label {
   background-color: #ffffff;
 }
 
+/* button */
+
 .nextButton {
   background-color: #FFAB44;
   border-radius: 6px;
@@ -35,12 +41,16 @@ label {
   background-color:rgb(245, 187, 116)
 } */
 
+/* error message */
+
 .requiredField {
   float: right;
   margin-left: 2px;
   color: #E70000;
   font-family: "Merriweather-Regular", sans-serif;
 }
+
+/* media queries for mobile */
 
 @media only screen and (min-width:321px) and (max-width:580px) {
   .formDiv {
