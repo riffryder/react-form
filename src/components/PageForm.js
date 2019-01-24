@@ -1,26 +1,29 @@
 import React, { Component } from 'react';
 
-import { Form, FormControl, FormGroup, Col, ControlLabel, Button } from 'react-bootstrap'
+import { Form, FormControl, FormGroup, Col, ControlLabel, Button } from 'react-bootstrap';
+
+import './PageForm.css';
 
 class PageForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      firstName: '',
-      lastName: '',
-      address: '',
-      address2: '',
+      firstName: ' ',
+      lastName: ' ',
+      address: ' ',
+      address2: ' ',
       firstNameValid: false,
       lastNameValid: false,
       addressValid: false,
       formIsValid: false,
-      error: 'REQUIRED'
+      error: 'REQUIRED',
     }
 
     this.handleUserInput = this.handleUserInput.bind(this);
     this.validateField = this.validateField.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleUserInput(e) {
@@ -54,7 +57,6 @@ class PageForm extends Component {
       lastNameValid: lastNameValid,
       addressValid: addressValid
     }, this.validateForm)
-    console.log('STATE', this.state);
   }
 
   validateForm() {
@@ -63,14 +65,27 @@ class PageForm extends Component {
     });
   }
 
+  errorClass(field) {
+    return field.length >= 1 ? '' : 'has-error';
+  }
+
+  handleSubmit(e) {
+    alert(`First Name: ${this.state.firstName}\nLast Name: ${this.state.lastName}\nAddress: ${this.state.address}\nAddress2: ${this.state.address2}`);
+    e.preventDefault();
+  }
+
   render() {
+
     return (
-      <Form horizontal>
-        <FormGroup>
+      <Form horizontal onSubmit={this.handleSubmit}>
+        <FormGroup
+        >
           <Col componentClass={ControlLabel}>
             FIRST NAME
           </Col>
-          <Col>
+          <Col
+            className={this.errorClass(this.state.firstName)}
+          >
             <FormControl
               type="text"
               name="firstName"
@@ -83,7 +98,7 @@ class PageForm extends Component {
           <Col componentClass={ControlLabel}>
             LAST NAME
           </Col>
-          <Col >
+          <Col className={this.errorClass(this.state.lastName)}>
             <FormControl
               type="text"
               name="lastName"
@@ -96,7 +111,7 @@ class PageForm extends Component {
           <Col componentClass={ControlLabel}>
             ADDRESS
           </Col>
-          <Col >
+          <Col className={this.errorClass(this.state.address)}>
             <FormControl
               type="text"
               name="address"
@@ -120,7 +135,12 @@ class PageForm extends Component {
 
         <FormGroup>
           <Col>
-            <Button type="submit" disabled={!this.state.formIsValid}>Next</Button>
+            <Button
+              type="submit"
+              disabled={!this.state.formIsValid}
+              className="nextButton"
+            > Next 
+            </Button>
           </Col>
         </FormGroup>
       </Form>
