@@ -7,8 +7,23 @@ class PageForm extends Component {
     super(props);
 
     this.state = {
-      value: null
+      firstName: '',
+      lastName: '',
+      address: '',
+      address2: '',
     }
+
+    this.handleUserInput = this.handleUserInput.bind(this);
+  }
+
+  handleUserInput(e) {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      [name] : value
+    })
+
   }
 
   render() {
@@ -19,7 +34,11 @@ class PageForm extends Component {
             FIRST NAME
           </Col>
           <Col>
-            <FormControl type="text"/>
+            <FormControl
+              type="text"
+              name="firstName"
+              onChange={this.handleUserInput}
+            />
           </Col>
         </FormGroup>
 
@@ -28,7 +47,11 @@ class PageForm extends Component {
             LAST NAME
           </Col>
           <Col >
-            <FormControl type="text" />
+            <FormControl
+              type="text"
+              name="lastName"
+              onChange={this.handleUserInput}
+            />
           </Col>
         </FormGroup>
 
@@ -37,7 +60,11 @@ class PageForm extends Component {
             ADDRESS
           </Col>
           <Col >
-            <FormControl type="text" />
+            <FormControl
+              type="text"
+              name="address"
+              onChange={this.handleUserInput}
+            />
           </Col>
         </FormGroup>
 
@@ -46,7 +73,11 @@ class PageForm extends Component {
             ADDRESS 2
           </Col>
           <Col >
-            <FormControl type="text" />
+            <FormControl
+              type="text"
+              name="address2"
+              onChange={this.handleUserInput}
+            />
           </Col>
         </FormGroup>
 
